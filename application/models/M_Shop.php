@@ -204,6 +204,14 @@ public function status_diproses($id_transaksi){
 	$this->db->update('transaksi',$data_update );
 }
 
+public function status_dibatalkan($id_transaksi){
+	$data_update=array(
+			'status'=>'Dibatalkan'
+	);
+	$this->db->where('id_transaksi',$id_transaksi);
+	$this->db->update('transaksi',$data_update );
+}
+
 public function status_dikirim(){
 	$data_update=array(
 			'status'=>'Sedang Dikirim',

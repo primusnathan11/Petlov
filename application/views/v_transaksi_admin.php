@@ -110,7 +110,7 @@
 			    <thead>
 					<tr> 
                         <th>No</th>
-												<th>ID Transaksi</th>
+						<th>ID Transaksi</th>
                         <th>Bukti Pembayaran</th>
                         <th>Tanggal</th>
                         <th>Harga</th>
@@ -140,12 +140,50 @@
                     <td>
 						<?php echo "Rp. ".number_format($isi->total_harga)?>
 					</td>
-                    <td>
+                    <!-- <td>
                     <?php if($isi->status=="Menunggu Pembayaran"){?>
                         <a href="<?php echo base_url().'Shop/status_diproses/'.$isi->id_transaksi?>" class="btn btn-warning"><?php echo $isi->status?></a>
                     <?php }else{?>
                         <a href="" class="btn btn-success"><?php echo $isi->status?></a>
                     <?php } ?>
+					</td> -->
+
+					<td>
+					<?php if($isi->status=="Menunggu Pembayaran"){?>
+					<div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<?php echo $isi->status?>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="<?php echo base_url().'Shop/status_diproses/'.$isi->id_transaksi?>">Approve</a>
+							<a class="dropdown-item" href="<?php echo base_url().'Shop/status_dibatalkan/'.$isi->id_transaksi?>">Decline</a>
+						</div>
+					</div>
+
+					<?php }else if ($isi->status=="Dibatalkan"){?>
+						<div class="dropdown">
+						<button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<?php echo $isi->status?>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="<?php echo base_url().'Shop/status_diproses/'.$isi->id_transaksi?>">Approve</a>
+							<a class="dropdown-item" href="<?php echo base_url().'Shop/status_dibatalkan/'.$isi->id_transaksi?>">Decline</a>
+						</div>
+					</div>
+
+					<?php }else if ($isi->status=="Sedang Dikirim"){?>
+                        <a href="" class="btn btn-primary"><?php echo $isi->status?></a>
+
+
+
+					<?php }else if ($isi->status=="Pesanan Selesai"){?>
+                        <a href="" class="btn btn-success"><?php echo $isi->status?></a>
+
+					<?php }else if ($isi->status=="Pesanan Diproses"){?>
+                        <a href="" class="btn btn-info"><?php echo $isi->status?></a>
+                    <?php } ?>
+
+
 					</td>
 					<td>
                         <a href="<?php echo base_url().'index.php/Shop/lihat_detail/'.$isi->id_transaksi?>">Lihat Detail</a>

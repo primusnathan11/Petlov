@@ -143,6 +143,11 @@ class Shop extends CI_Controller
 		redirect(base_url('Shop/transaksi_admin_page'));
 	}
 
+	public function status_dibatalkan($id_transaksi){
+		$ambil=$this->M_Shop->status_dibatalkan($id_transaksi);
+		redirect(base_url('Shop/transaksi_admin_page'));
+	}
+
 	public function status_dikirim(){
 		$ambil=$this->M_Shop->status_dikirim();
 		redirect(base_url('Shop/pesanan_penjual'));
